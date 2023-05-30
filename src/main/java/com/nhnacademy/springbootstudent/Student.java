@@ -5,14 +5,26 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-// final로 된 변수들만 생성자 안만들어도됨
-@RequiredArgsConstructor
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Getter
 @ToString
 @EqualsAndHashCode
+@Entity
 public class Student {
-    private final String studentName;
-    private final Integer score;
+    @Id
+    private Long id;
+    private String studentName;
+    private Integer score;
 
+    public Student() {
+    }
+
+    public Student(Long id, String studentName, Integer score) {
+        this.id = id;
+        this.studentName = studentName;
+        this.score = score;
+    }
 }
 

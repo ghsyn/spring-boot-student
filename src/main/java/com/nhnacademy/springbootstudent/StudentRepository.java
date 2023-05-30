@@ -1,9 +1,7 @@
 package com.nhnacademy.springbootstudent;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StudentRepository {
 
-    // 보통 repository에서는 findAll(필터) 쓰는게 관례
-    List<Student> findAll();
+public interface StudentRepository extends JpaRepository<Student, Long> {
 }

@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,14 +18,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class NhnStudentServiceTest {
 
     @Autowired
-    StudentService studentService;
+    StudentRepository studentRepository;
 
     @Test
-    void testGetStudents() {
-        List<Student> actual = studentService.getStudents();
+    void testGetJPAStudents() {
+        Student ksy = new Student(1L, "김시연", 999);
+        studentRepository.save(ksy);
 
-//        System.out.println(actual);
-        log.info(actual.toString());
-        assertThat(actual.size()).isEqualTo(2);
+        Optional<Student> actual = studentRepository.findById(1L);
+
+        assertThat(actual).isPresent();
+        assertThat(actual.get()).isEqualTo(ksy);
     }
 }
