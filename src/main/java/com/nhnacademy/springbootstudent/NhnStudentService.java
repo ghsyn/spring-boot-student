@@ -24,9 +24,9 @@ public class NhnStudentService implements StudentService {
         return studentRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 학생입니다."));
     }
 
-    @Override
     // default = false
     @Transactional
+    @Override
     public Student createStudent(Student student) {
         boolean present = studentRepository.findById(student.getId()).isPresent();
         if (present) {
@@ -35,9 +35,9 @@ public class NhnStudentService implements StudentService {
         return studentRepository.save(student);
     }
 
-    @Override
     // default = false
     @Transactional
+    @Override
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
